@@ -49,13 +49,13 @@ module "nic" {
   ]
 }
 
-module "manageddisk" {
-    source = "git@github.com:partha-sarathi-sarkar/Internal-terraform.git"
-    osdiskname = var.osdiskname
-    resource_group_name = var.resource_group_name
-    location= var.location
-    environment =var.environment
-}
+#module "manageddisk" {
+ #   source = "git@github.com:partha-sarathi-sarkar/Internal-terraform.git"
+  #  osdiskname = var.osdiskname
+   # resource_group_name = var.resource_group_name
+    #location= var.location
+    #environment =var.environment
+#}
 
 module "vm" {
   source = "./modules/vm"
