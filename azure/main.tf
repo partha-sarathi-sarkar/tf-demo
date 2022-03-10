@@ -67,6 +67,6 @@ module "vm" {
   # osdiskid = module.manageddisk.osdiskid
   depends_on = [
     module.nic.nicid,
-    module.manageddisk.osdiskid
+    #module.manageddisk.osdiskid
   ]
 }
