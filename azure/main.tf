@@ -49,6 +49,14 @@ module "nic" {
   ]
 }
 
+module "manageddisk" {
+    source = "git@github.com:partha-sarathi-sarkar/Internal-terraform.git"
+    osdiskname = var.osdiskname
+    resource_group_name = var.resource_group_name
+    location= var.location
+    environment =var.environment
+}
+
 module "vm" {
   source = "./modules/vm"
   resource_group_name = var.resource_group_name
@@ -56,7 +64,9 @@ module "vm" {
   vmname = var.vmname
   environment = var.environment
   nicid = module.nic.nicid
+  # osdiskid = module.manageddisk.osdiskid
   depends_on = [
-    module.nic.nicid
+    module.nic.nicid,
+    module.manageddisk.osdiskid
   ]
 }

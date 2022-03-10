@@ -28,3 +28,6 @@ variable "environment" {
 
 variable "nicid" {
 }
+
+# variable "osdiskid" {
+# }

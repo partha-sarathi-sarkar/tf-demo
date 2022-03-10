@@ -23,3 +23,7 @@ variable "subnet_name" {
 variable "vmname" {
   default = "defaultvm"
 }
+
+variable "osdiskname" {
+  default = "defaultosdisk"
+}
