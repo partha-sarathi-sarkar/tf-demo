@@ -8,4 +8,8 @@ resource "azurerm_network_interface" "example" {
     subnet_id                     = var.subnetid
     private_ip_address_allocation = "Dynamic"
   }
+
+  # depends_on = [
+  #   subnet
+  # ]
 }

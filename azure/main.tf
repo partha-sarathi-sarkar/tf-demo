@@ -34,6 +34,9 @@ module "subnet" {
   resource_group_name = var.resource_group_name
   subnet_name = var.subnet_name
   vnet_name = var.vnet_name
+   depends_on = [
+    module.vnet.vnetid
+  ]
 }
 
 module "nic" {
@@ -41,6 +44,9 @@ module "nic" {
   resource_group_name = var.resource_group_name
   location = var.location
   subnetid = module.subnet.subnetid
+  depends_on = [
+    module.subnet.subnetid
+  ]
 }
 
 module "vm" {
@@ -50,4 +56,7 @@ module "vm" {
   vmname = var.vmname
   environment = var.environment
   nicid = module.nic.nicid
+  depends_on = [
+    module.nic.nicid
+  ]
 }

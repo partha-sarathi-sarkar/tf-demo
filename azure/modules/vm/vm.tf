@@ -34,4 +34,8 @@ resource "azurerm_virtual_machine" "main" {
   tags = {
     environment = var.environment
   }
+
+  # depends_on = [
+  #   nicid
+  # ]
 }
