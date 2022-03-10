@@ -25,3 +25,6 @@ variable "admin_password" {
 
 variable "environment" {
 }
+
+variable "nicid" {
+}

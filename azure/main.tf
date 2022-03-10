@@ -40,6 +40,7 @@ module "nic" {
   source = "./modules/nic"
   resource_group_name = var.resource_group_name
   location = var.location
+  subnetid = module.subnet.subnetid
 }
 
 module "vm" {
@@ -48,4 +49,5 @@ module "vm" {
   location = var.location
   vmname = var.vmname
   environment = var.environment
+  nicid = module.nic.nicid
 }
