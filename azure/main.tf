@@ -1,19 +1,51 @@
 
-provider "azurerm" {
-    version = "~> 2.0"
-    features {}
-}
 terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=2.46.0"
+    }
+  }
 }
 
-module "rg" {
-  source  = "./modules/resoucegroup"
-  name  = var.resouce_group
-  environment = var.environment
+# Configure the Microsoft Azure Provider
+provider "azurerm" {
+  features {}
 }
 
-module "acr" {
-  source   = "./modules/acr"
-  name     = var.acr_name
+# module "nsg" {
+#   source = "./modules/nsg"
+#   resource_group_name = var.resource_group_name
+#   location = var.location
+#   nsg_name = var.nsg_name
+  
+# }
+
+module "vnet" {
+    source = "./modules/vnet"
+    vnet_name = var.vnet_name
+    resource_group_name = var.resource_group_name
+    location = var.location
+    environment = var.environment
+}
+
+module "subnet" {
+  source = "./modules/subnet"
+  resource_group_name = var.resource_group_name
+  subnet_name = var.subnet_name
+  vnet_name = var.vnet_name
+}
+
+module "nic" {
+  source = "./modules/nic"
+  resource_group_name = var.resource_group_name
+  location = var.location
+}
+
+module "vm" {
+  source = "./modules/vm"
+  resource_group_name = var.resource_group_name
+  location = var.location
+  vmname = var.vmname
   environment = var.environment
 }
