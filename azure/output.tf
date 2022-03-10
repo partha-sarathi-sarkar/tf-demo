@@ -1,6 +1,6 @@
-output "osdiskid" {
-  value = module.manageddisk.osdiskid
-}
+#output "osdiskid" {
+ # value = module.manageddisk.osdiskid
+#}
 
 output "vnetid" {
   value = module.vnet.vnetid
