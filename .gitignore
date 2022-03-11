@@ -1,7 +1,18 @@
-# OS generated files #
-######################
-.DS_Store
-.DS_Store?
+# Mac OS X
+*.DS_Store
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+*.xcworkspace/
+project.xcworkspace/
+xcuserdata/
+
+# Podfiles
+Pods/
 
 
 # Local .terraform directories
