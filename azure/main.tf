@@ -20,33 +20,33 @@ provider "azurerm" {
   
 # }
 
-module "vnet" {
-    source = "./modules/vnet"
-    vnet_name = var.vnet_name
-    resource_group_name = var.resource_group_name
-    location = var.location
-    environment = var.environment
-}
+# module "vnet" {
+#     source = "./modules/vnet"
+#     vnet_name = var.vnet_name
+#     resource_group_name = var.resource_group_name
+#     location = var.location
+#     environment = var.environment
+# }
 
-module "subnet" {
-  source = "./modules/subnet"
-  resource_group_name = var.resource_group_name
-  subnet_name = var.subnet_name
-  vnet_name = var.vnet_name
-   depends_on = [
-    module.vnet.vnetid
-  ]
-}
+# module "subnet" {
+#   source = "./modules/subnet"
+#   resource_group_name = var.resource_group_name
+#   subnet_name = var.subnet_name
+#   vnet_name = var.vnet_name
+#    depends_on = [
+#     module.vnet.vnetid
+#   ]
+# }
 
-module "nic" {
-  source = "./modules/nic"
-  resource_group_name = var.resource_group_name
-  location = var.location
-  subnetid = module.subnet.subnetid
-  depends_on = [
-    module.subnet.subnetid
-  ]
-}
+# module "nic" {
+#   source = "./modules/nic"
+#   resource_group_name = var.resource_group_name
+#   location = var.location
+#   subnetid = module.subnet.subnetid
+#   depends_on = [
+#     module.subnet.subnetid
+#   ]
+# }
 
 #module "manageddisk" {
  #   source = "git@github.com:partha-sarathi-sarkar/Internal-terraform.git"
@@ -56,16 +56,33 @@ module "nic" {
     #environment =var.environment
 #}
 
-module "vm" {
-  source = "./modules/vm"
+# module "vm" {
+#   source = "./modules/vm"
+#   resource_group_name = var.resource_group_name
+#   location = var.location
+#   vmname = var.vmname
+#   environment = var.environment
+#   nicid = module.nic.nicid
+#   # osdiskid = module.manageddisk.osdiskid
+#   depends_on = [
+#     module.nic.nicid,
+#     #module.manageddisk.osdiskid
+#   ]
+# }
+
+
+module "acr" {
+  source = "./modules/acr"
   resource_group_name = var.resource_group_name
   location = var.location
-  vmname = var.vmname
+  acr_name = var.acr_name
   environment = var.environment
-  nicid = module.nic.nicid
-  # osdiskid = module.manageddisk.osdiskid
-  depends_on = [
-    module.nic.nicid,
-    #module.manageddisk.osdiskid
-  ]
+}
+
+module "aks" {
+  source = "./modules/aks"
+  resource_group_name = var.resource_group_name
+  location = var.location
+  aks_name = var.aks_name
+  environment = var.environment
 }

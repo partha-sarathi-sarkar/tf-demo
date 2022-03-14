@@ -27,3 +27,12 @@ variable "vmname" {
 variable "osdiskname" {
   default = "defaultosdisk"
 }
+
+variable "acr_name" {
+  default = "defaultacrname"
+}
+
+variable "aks_name" {
+  default = "defaultaksname"
+}
+
